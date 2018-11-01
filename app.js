@@ -37,7 +37,7 @@ function Data() {
 }
 
 /*
-  Adds an order to to the queue
+  Adds an order to the queue
 */
 Data.prototype.addOrder = function (order) {
   //Store the order in an "associative array" with orderId as key
