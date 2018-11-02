@@ -1,9 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:height="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml">
     <head>
+        <style>
+            input[type=Submit], button[type=submit] {
+                background-color: #999999;
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+        </style>
         <title>DELI-VERY</title>
+        <meta charset="utf-8"/>
     </head>
-    <body>
-        <h1>Hello World!!!</h1>
-    </body>
+        <body>
+            <main>
+                <h1>Welcome to BurgerOnline</h1>
+            </main>
+
+            <section>
+            <h3>Select Burger</h3>
+                <p>This is where you execute burger selection</p>
+
+
+                <table>
+                    <thead>
+                    <th>The Fire Burger</th>
+                    <th>Fried Turkey Burger</th>
+                    <th>A Double w/ Cheese</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <td><img src="img/TheFireBurger.jpg" alt="The Fire Burger" title="The Fire Burger" width="400"></img></td>
+                    <td><img src="img/friedturkeyburger.jpg" alt="Fried Turkey Burger" title="Fried Turkey Burger" width="400"></img></td>
+                    <td><img src="img/friedturkeyburger.jpg" alt="Fried Turkey Burger" title="Fried Turkey Burger" width="400"></img></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <td>
+                        <ul>
+                            <li>750 kCal </li>
+                    <li>Contains lactose </li>
+                    <li>Contains gluten</li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <ul>
+                            <li>600 kCal </li>
+                            <li>Contains lactose </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>1800 kCal </li>
+                            <li>Contains lactose </li>
+                            <li>Contains gluten</li>
+                        </ul>
+                    </td>
+
+                    </tfoot>
+                </table>
+            </section>
+
+            <section id="contact">
+                <h3>Customer Information</h3>
+                <p>This is where you provide necessary information</p>
+                <h4>Delivery information:</h4>
+                <form>
+                    <p>
+                        <label for="name">Full Name</label><br>
+                        <input type="text" id="name" name="fn" required="required" placeholder="First name">
+                        <input type="text" id="lastname" name="ln" placeholder="Last name">
+                    </p>
+
+                    <p>
+                        <label for="email">E-mail</label><br>
+                        <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+                    </p>
+
+                    <p>
+                        <label for="street">Street</label><br>
+                        <input type="text" id="street" name="street" placeholder="Street name">
+                    </p>
+                    <p>
+                        <label for="house">House</label><br>
+                        <input type="text" id="house" name="hus" placeholder="House Number">
+                    </p>
+                    <p>
+                        <label for="payment">Recipient</label><br>
+                        <select id="payment" name="pay">
+                            <option>Credit Card</option>
+                            <option>Debit Card</option>
+                            <option>Swish</option>
+                            <option>BankId</option>
+                        </select>
+                    </p>
+                    <p>
+                        <!-- for="" and id="" is missing for Gender attribute-->
+                        <label>Gender</label><br>
+                        <input type="radio" checked="checked" name="sex" value="male"> Male<br>
+                        <input type="radio" name="sex" value="female"> Female<br>
+                        <input type="radio" name="sex" value="non-binary"> Non-binary<br>
+                        <input type="radio" name="sex" value="Undisclosed"> Undisclosed
+                    </p>
+                    <!-- <input type="submit" value="Place my order!"> -->
+                    <button type="submit" value="Place my order!" ><img src="img/food-order-icon.jpg" width="25" height="25" align="center"> Place my order!</button>
+
+                </form>
+            </section>
+            <footer>
+
+            </footer>
+        </body>
 </html>
