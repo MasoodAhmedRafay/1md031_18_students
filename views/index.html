@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:height="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml">
     <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Open+Sans" rel="stylesheet">
+      <!--
         <style>
-            input[type=Submit], button[type=submit] {
+            button[type=submit] {
                 background-color: #999999;
                 border: none;
                 color: white;
@@ -12,60 +15,85 @@
                 cursor: pointer;
             }
         </style>
+        -->
         <title>DELI-VERY</title>
         <meta charset="utf-8"/>
     </head>
         <body>
             <main>
-                <h1>Welcome to BurgerOnline</h1>
+                <h1 class="headline">Welcome to</h1>
+                <figure>
+                    <img class="cover" src="img/Burgerinn.png" alt="cover image" title="Cover Image">
+                </figure>
             </main>
 
-            <section>
-            <h3>Select Burger</h3>
+            <section class="burgerDescription" id="burger">
+                <div style="align-self: auto; text-align: left">
+                <h3>Select Burger</h3>
                 <p>This is where you execute burger selection</p>
+                </div>
+                    <table class="center">
+                        <thead>
+                        <tr class="wrapper">
+                            <th>
+                                <div class="fire">The Fire Burger</div>
+                            </th>
+                            <th>
+                                <div class="turkey">Fried Turkey Burger</div>
+                            </th>
+                            <th>
+                                <div class="cheese">A Double w/ Cheese</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="images">
 
-
-                <table>
-                    <thead>
-                    <th>The Fire Burger</th>
-                    <th>Fried Turkey Burger</th>
-                    <th>A Double w/ Cheese</th>
-                    </thead>
-                    <tbody>
-                    <tr>
-                    <td><img src="img/TheFireBurger.jpg" alt="The Fire Burger" title="The Fire Burger" width="400"></img></td>
-                    <td><img src="img/friedturkeyburger.jpg" alt="Fried Turkey Burger" title="Fried Turkey Burger" width="400"></img></td>
-                    <td><img src="img/friedturkeyburger.jpg" alt="Fried Turkey Burger" title="Fried Turkey Burger" width="400"></img></td>
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <td>
-                        <ul>
-                            <li>750 kCal </li>
-                    <li>Contains lactose </li>
-                    <li>Contains gluten</li>
-                        </ul>
-                    </td>
-
-                    <td>
-                        <ul>
-                            <li>600 kCal </li>
-                            <li>Contains lactose </li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>1800 kCal </li>
-                            <li>Contains lactose </li>
-                            <li>Contains gluten</li>
-                        </ul>
-                    </td>
-
+                                <tr class="wrapper">
+                                    <td>
+                                        <div class="fire">
+                                            <img src="img/TheFireBurger.jpg" alt="The Fire Burger" title="The Fire Burger" width="100%" height="100%">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="turkey">
+                                            <img src="img/friedturkeyburger.jpg" alt="Fried Turkey Burger" title="Fried Turkey Burger" width="100%" height="100%">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="cheese">
+                                            <img src="img/Double-Cheeseburger.jpg" alt="Double-Cheeseburger" title="A Double w/ Cheese" width="100%" height="100%">
+                                        </div>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    <tfoot id="list">
+                        <tr class="wrapper">
+                            <td>
+                                <ul class="fire">
+                                    <li>750 kCal </li>
+                                    <li>Contains <span id="ingr">lactose </span></li>
+                                    <li>Contains <span id="ingr">gluten</span></li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul class="turkey">
+                                    <li>600 kCal </li>
+                                    <li>Contains <span id="ingr">lactose </span> </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul class="cheese">
+                                    <li>1800 kCal </li>
+                                    <li>Contains <span id="ingr">lactose </span> </li>
+                                    <li>Contains <span id="ingr">gluten</span></li>
+                                </ul>
+                            </td>
+                        </tr>
                     </tfoot>
                 </table>
             </section>
 
-            <section id="contact">
+            <section class="info" id="contact">
                 <h3>Customer Information</h3>
                 <p>This is where you provide necessary information</p>
                 <h4>Delivery information:</h4>
@@ -107,12 +135,13 @@
                         <input type="radio" name="sex" value="Undisclosed"> Undisclosed
                     </p>
                     <!-- <input type="submit" value="Place my order!"> -->
-                    <button type="submit" value="Place my order!" ><img src="img/food-order-icon.jpg" width="25" height="25" align="center"> Place my order!</button>
-
                 </form>
             </section>
             <footer>
-
+                <div class="button">
+                <button type="submit" value="Place my order!" ><img src="img/food-order-icon.jpg" width="35" height="35" align="center"> Place my order!
+                </button>
+                </div>
             </footer>
         </body>
 </html>

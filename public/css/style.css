@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Open+Sans');
+@media screen and (max-width: 800px) {
+    h1 {
+        font-size: 6vw;
+    }
+}
+body {
+    font-family: Arial, sans-serif;
+    font-size: 140%;
+    margin: 1%;
+    padding: 1%;
+
+}
+.headline {
+    overflow: hidden;
+    text-transform: uppercase;
+    font-family: 'Baloo Bhaijaan', cursive;
+    font-size: 300%;
+    position: absolute;
+    /*color: #ffb226;*/
+    color: #ffffff;
+    left: 10%;
+    right: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    letter-spacing: 1em;
+}
+.cover {
+    width: 100%;
+    height: 10em;
+}
+table {
+    margin: 1%;
+    padding: 1%;
+}
+/*
+.head {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 33% 33% 33%;
+}
+.b1 {
+    grid-column: 1;
+    grid-row: 1 ;
+}
+.b2 {
+    grid-column: 2 ;
+    grid-row: 1 ;
+}
+.b3 {
+    grid-column: 3 ;
+    grid-row: 1 ;
+}
+*/
+
+.wrapper {
+    display: grid;
+    grid-gap: 1%;
+    grid-template-columns: 33% 33% 33%;
+    background-color: #000;
+    color: #fff;
+}
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}
+.fire {
+    grid-column: 1;
+    grid-row: 1 ;
+}
+.turkey {
+    grid-column: 2 ;
+    grid-row: 1 ;
+}
+.cheese {
+    grid-column: 3 ;
+    grid-row: 1 ;
+}
+.burgerDescription {
+    color: white;
+    background-color: black;
+    border: dotted;
+    margin: 1%;
+    padding: 1%;
+    text-align:center;
+    font-size: 140%;
+}
+#ingr {
+    font-weight: bold;
+}
+
+#list {
+    text-align: left;
+}
+
+.info {
+    border: dotted;
+    margin: 1%;
+    padding: 1%;
+}
+.button {
+    margin: 1%;
+    padding: 1%;
+}
+button:hover {
+    background-color: #4CAF50; /* Green */
+}
