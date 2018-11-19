@@ -1,29 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:height="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml">
     <head>
-        <script src="js/js_script.js"></script>
+        
         <script src="https://vuejs.org/js/vue.js"></script>
-        <script src="js/vue_script.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Open+Sans" rel="stylesheet">
-      <!--
-        <style>
-            button[type=submit] {
-                background-color: #999999;
-                border: none;
-                color: white;
-                padding: 16px 32px;
-                text-decoration: none;
-                margin: 4px 2px;
-                cursor: pointer;
-            }
-        </style>
-        -->
         <title>DELI-VERY</title>
         <meta charset="utf-8"/>
+        <script src="js/js_script.js"></script>
     </head>
         <body>
+            <div id="store">
             <main>
+
                 <h1 class="headline">Welcome to Burger Inn</h1>
                 <figure>
                     <img class="cover" src="img/food_2004.jpg" alt="cover image" title="Cover Image">
@@ -32,53 +21,47 @@
 
             <section class="burgerDescription" id="burger">
                 <div style="align-self: auto; text-align: left">
+				<div id = "MenuItem">
+				
+				</div>
                 <h3>Select Burger</h3>
                 <p>This is where you execute burger selection</p>
                 </div>
-                    <table class="center">
+                    <table v-if="MenuItem.length > 0" class="center">
                         <thead>
                         <tr class="wrapper">
-                            <th>
-                                <div class="fire">The Fire Burger</div>
-                            </th>
-                            <th>
-                                <div class="turkey">Fried Turkey Burger</div>
-                            </th>
-                            <th>
-                                <div class="cheese">A Double w/ Cheese</div>
+                            <th 
+                            v-for="(item_obj,item_index) in MenuItem"v-if="item_obj.stock>0">
+                                <div class="col-item">{{item_obj.name}}</div>
                             </th>
                         </tr>
                         </thead>
                         <tbody class="images">
-
                                 <tr class="wrapper">
-                                    <td>
-                                        <div class="fire">
-                                            <img src="img/TheFireBurger.jpg" alt="The Fire Burger" title="The Fire Burger" width="100%" height="100%">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="turkey">
-                                            <img src="img/friedturkeyburger.jpg" alt="Fried Turkey Burger" title="Fried Turkey Burger" width="100%" height="100%">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="cheese">
-                                            <img src="img/Double-Cheeseburger.jpg" alt="Double-Cheeseburger" title="A Double w/ Cheese" width="100%" height="100%">
+                                    <td 
+                                    v-for="(item_obj,item_index) in MenuItem" 
+                                    v-if="item_obj.stock>0">
+                                        <div class="col-item">
+                                            <img :src="item_obj.img" :alt="item_obj.name" :title="item_obj.name" width="100%" height="100%">
                                         </div>
                                     </td>
                                 </tr>
                         </tbody>
                     <tfoot id="list">
                         <tr class="wrapper">
-                            <td>
-                                <ul class="fire">
-                                    <li>750 kCal </li>
-                                    <li>Contains <span id="ingr">lactose </span></li>
-                                    <li>Contains <span id="ingr">gluten</span></li>
+                            <td 
+                            v-for="(item_obj,item_index) in MenuItem"v-if="item_obj.stock>0">
+                                <ul class="col-item">
+                                    <li>{{item_obj.kCal}} kCal </li>
+                                    <li v-if="item_obj.lactose==true">
+                                        Contains <span id="ingr">lactose </span>
+                                    </li>
+                                    <li v-if="item_obj.gluten==true">
+                                        Contains <span id="ingr">gluten</span>
+                                    </li>
                                 </ul>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <ul class="turkey">
                                     <li>600 kCal </li>
                                     <li>Contains <span id="ingr">lactose </span> </li>
@@ -90,7 +73,7 @@
                                     <li>Contains <span id="ingr">lactose </span> </li>
                                     <li>Contains <span id="ingr">gluten</span></li>
                                 </ul>
-                            </td>
+                            </td> -->
                         </tr>
                     </tfoot>
                 </table>
@@ -146,5 +129,8 @@
                 </button>
                 </div>
             </footer>
+            </div>
         </body>
+		
+		<script src="js/vue_script.js"></script>
 </html>
