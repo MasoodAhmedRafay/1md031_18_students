@@ -6,6 +6,7 @@ myData = [
 		"lactose": true,
 		"gluten": true,    
 		"stock": 2,
+		"checked":false,
 		"img": "/img/TheFireBurger.jpg"
 	},
 	{
@@ -14,6 +15,7 @@ myData = [
 		"lactose": true,
 		"gluten": false,    
 		"stock": 3,
+		"checked":false,
 		"img": "/img/friedturkeyburger.jpg"
 	},
 	{
@@ -22,6 +24,7 @@ myData = [
 		"lactose": true,
 		"gluten": true,   
 		"stock": 1, 
+		"checked":false,
 		"img": "/img/Double-Cheeseburger.jpg"
 	}
 ];
@@ -32,6 +35,26 @@ var app = new Vue({
 		el: '#store',
 		data: {	
 			MenuItem:myData,
-		}
+			orderData:[],
+			userData:'',
+		},
+		methods: {
+	        markDone: function() {
+	            //Add some functionality
+	        },
+	        PlaceOrder () {
+	        	console.log(this.$refs.f_name.value);
+	        	var temp_item={
+                    f_name:this.$refs.f_name.value,
+                    l_name:this.$refs.l_name.value,
+                    email:this.$refs.email.value,
+                    street:this.$refs.street.value,
+                    house:this.$refs.house.value,
+                    sex:this.$refs.sex.value
+                };
+	        	console.log(temp_item);
+                this.userData=temp_item;
+		    }
+	    }
 
 });

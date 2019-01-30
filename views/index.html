@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:height="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml">
     <head>
-        
+
         <script src="https://vuejs.org/js/vue.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Open+Sans" rel="stylesheet">
@@ -57,9 +57,13 @@
                                         Contains <span id="ingr">lactose </span>
                                     </li>
                                     <li v-if="item_obj.gluten==true">
-                                        Contains <span id="ingr">gluten</span>
+                                        Contains <span id="ingr1">gluten</span>
                                     </li>
                                 </ul>
+                                <label>
+                                    <input type="checkbox" name="tick" v-model="item_obj.checked"> Select
+                                </label>
+                                 
                             </td>
                             <!-- <td>
                                 <ul class="turkey">
@@ -80,32 +84,33 @@
             </section>
 
             <section class="info" id="contact">
+                <form id="order-form">
                 <h3>Customer Information</h3>
                 <p>This is where you provide necessary information</p>
                 <h4>Delivery information:</h4>
-                <form>
+                
                     <p>
                         <label for="name">Full Name</label><br>
-                        <input type="text" id="name" name="fn" required="required" placeholder="First name">
-                        <input type="text" id="lastname" name="ln" placeholder="Last name">
+                        <input type="text" id="name" name="fn" required="required" placeholder="First name" ref="f_name">
+                        <input type="text" id="lastname" name="ln" ref="l_name" placeholder="Last name">
                     </p>
 
                     <p>
                         <label for="email">E-mail</label><br>
-                        <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+                        <input type="email" id="email" name="em" ref="email" required="required" placeholder="E-mail address">
                     </p>
 
                     <p>
                         <label for="street">Street</label><br>
-                        <input type="text" id="street" name="street" placeholder="Street name">
+                        <input type="text" id="street" name="street" ref="street" placeholder="Street name">
                     </p>
                     <p>
                         <label for="house">House</label><br>
-                        <input type="text" id="house" name="hus" placeholder="House Number">
+                        <input type="text" id="house" name="hus" ref="house" placeholder="House Number">
                     </p>
                     <p>
                         <label for="payment">Recipient</label><br>
-                        <select id="payment" name="pay">
+                        <select id="payment" name="pay" ref="payment">
                             <option>Credit Card</option>
                             <option>Debit Card</option>
                             <option>Swish</option>
@@ -115,22 +120,38 @@
                     <p>
                         <!-- for="" and id="" is missing for Gender attribute-->
                         <label>Gender</label><br>
-                        <input type="radio" checked="checked" name="sex" value="male"> Male<br>
+                        <input type="radio" checked="checked" name="sex" ref="sex" value="male"> Male<br>
                         <input type="radio" name="sex" value="female"> Female<br>
                         <input type="radio" name="sex" value="non-binary"> Non-binary<br>
                         <input type="radio" name="sex" value="Undisclosed"> Undisclosed
                     </p>
                     <!-- <input type="submit" value="Place my order!"> -->
-                </form>
-            </section>
-            <footer>
-                <div class="button">
-                <button type="submit" value="Place my order!" ><img src="img/food-order-icon.jpg" width="35" height="35" align="center"> Place my order!
+            <div class="button">
+                <button type="submit" value="Place my order!" @click.prevent="PlaceOrder">
+                    <img src="/img/food-order-icon.jpg" 
+                width="35" height="35" align="center"> 
+                    Place my order!
                 </button>
+                </div>    
+            </form>
+            </section>
+            <section>
+                <div v-if="userData">
+                    User Details:
+                    <pre>{{userData.f_name+ ' '+userData.l_name}}</pre>
+                    <pre>{{userData}}</pre>
+                    
+
+                    Order Details:
+                    <ul v-if="MenuItem.length>0">
+                        <li 
+                        v-for="(item_obj,item_index) in MenuItem" v-if="item_obj.checked==true"
+                        >{{item_obj.name}}</li>
+                    </ul>
                 </div>
-            </footer>
+            </section>
             </div>
         </body>
-		
+
 		<script src="js/vue_script.js"></script>
 </html>
