@@ -15,7 +15,7 @@ body {
     overflow: hidden;
     text-transform: uppercase;
     font-family: 'Baloo Bhaijaan', cursive;
-    font-size: 300%;
+    font-size: 220%;
     position: absolute;
     /*color: #ffb226;*/
     color: #ffffff;
@@ -68,18 +68,18 @@ table {
     padding: 20px;
     font-size: 150%;
 }
-.fire {
+.col-item {
     grid-column: 1;
     grid-row: 1 ;
 }
-.turkey {
+/* .turkey {
     grid-column: 2 ;
     grid-row: 1 ;
 }
 .cheese {
     grid-column: 3 ;
     grid-row: 1 ;
-}
+} */
 .burgerDescription {
     color: white;
     background-color: black;
@@ -90,6 +90,9 @@ table {
     font-size: 140%;
 }
 #ingr {
+    font-weight: bold;
+}
+#ingr1 {
     font-weight: bold;
 }
 
