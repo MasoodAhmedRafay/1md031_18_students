@@ -1,158 +1,173 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:height="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<header>
     <head>
-
-        <script type="text/javascript" src="menu.js"></script>
-        <script src="https://vuejs.org/js/vue.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Open+Sans" rel="stylesheet">
-        <title>DELI-VERY</title>
+        <script src="/socket.io/socket.io.js" defer></script>
+        <script src="js/js_script.js" defer></script>
+        <script src="https://vuejs.org/js/vue.js" defer></script>
+        <script src="js/vue_script.js" defer></script>
+        <script type="text/javascript" src="js/menu.js"></script>
+        <link rel="stylesheet" href="css/deli-very.css">
+        <title>BURGER-INN!</title>
         <meta charset="utf-8"/>
-        <!-- <script src="js/js_script.js"></script> -->
     </head>
-        <body>
-            <div id="store">
-            <main>
+</header>
 
-                <h1 class="headline">Welcome to Burger Inn</h1>
-                <figure>
-                    <img class="cover" src="img/food_2004.jpg" alt="cover image" title="Cover Image">
-                </figure>
-            </main>
+<body>
+<div id="store">
+    <main>
 
-            <section class="burgerDescription" id="burger">
-                <div style="align-self: auto; text-align: left">
-				<div id = "MenuItem">
-				
-				</div>
-                <h3>Select Burger</h3>
-                <p>This is where you execute burger selection</p>
+        <h1 class="headline">Welcome to Burger Inn</h1>
+        <figure>
+            <img class="cover" src="img/food_2004.jpg" alt="cover image" title="Cover Image">
+        </figure>
+    </main>
+
+    <section class="burgerDescription" id="burger">
+        <div style="align-self: auto; text-align: left">
+            <div id = "MenuItem">
+
+            </div>
+            <h3>Select Burger</h3>
+            <!--
+            <p>This is where you execute burger selection</p>
+        -->
+        </div>
+        <table v-if="MenuItem.length > 0" class="center">
+            <thead>
+            <tr class="wrapper">
+                <th
+                        v-for="(item_obj,item_index) in MenuItem" v-if="item_obj.stock>0">
+                    <div class="col-item">{{item_obj.name}}</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody class="images">
+            <tr class="wrapper">
+                <td
+                        v-for="(item_obj,item_index) in MenuItem"
+                        v-if="item_obj.stock>0">
+                    <div class="col-item">
+                        <img :src="item_obj.img" :alt="item_obj.name" :title="item_obj.name" width="100%" height="100%">
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot id="list">
+            <tr class="wrapper">
+                <td
+                        v-for="(item_obj,item_index) in MenuItem"v-if="item_obj.stock>0">
+                    <ul class="col-item">
+                        <li>{{item_obj.kCal}} kCal </li>
+                        <li v-if="item_obj.lactose==true">
+                            Contains <span id="ingr">lactose </span>
+                        </li>
+                        <li v-if="item_obj.gluten==true">
+                            Contains <span id="ingr1">gluten</span>
+                        </li>
+                    </ul>
+                    <label>
+                        <input type="checkbox" name="tick" :value="item_obj.name" v-model="orderItems"> Select
+                    </label>
+
+                </td>
+                <!-- <td>
+                    <ul class="turkey">
+                        <li>600 kCal </li>
+                        <li>Contains <span id="ingr">lactose </span> </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul class="cheese">
+                        <li>1800 kCal </li>
+                        <li>Contains <span id="ingr">lactose </span> </li>
+                        <li>Contains <span id="ingr">gluten</span></li>
+                    </ul>
+                </td> -->
+            </tr>
+            </tfoot>
+        </table>
+    </section>
+
+    <section class="info" id="contact">
+        <form id="order-form">
+            <h3>Customer Information</h3>
+            <!--
+            <p>This is where you provide necessary information</p>
+            -->
+            <h4>Delivery information:</h4>
+
+            <p>
+                <label for="name">Full Name</label><br>
+
+                <input type="text" id="name" name="fn" required="required" placeholder="First name" v-model="userData[0]">
+                <input type="text" id="lastname" name="ln" placeholder="Last name" v-model="userData[1]">
+            </p>
+
+            <p>
+                <label for="email">E-mail</label><br>
+                <input type="email" id="email" name="em" required="required" placeholder="E-mail address" v-model="userData[2]">
+            </p>
+
+            <!-- <p>
+                 <label for="street">Street</label><br>
+                 <input type="text" id="street" name="street" ref="street" placeholder="Street name">
+             </p>
+             <p>
+                 <label for="house">House</label><br>
+                 <input type="text" id="house" name="hus" ref="house" placeholder="House Number">
+             </p>
+            -->
+            <p>
+                <label for="payment">Recipient</label><br>
+                <select id="payment" name="pay" v-model="userData[3]">
+                    <option>Credit Card</option>
+                    <option>Debit Card</option>
+                    <option>Swish</option>
+                    <option>BankId</option>
+                </select>
+            </p>
+
+            <h1> Click in the map! </h1>
+            <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
+            <div class="view-box">
+                <div id="dots" v-on:click="displayOrder">
+                    <div
+                            v-bind:style="{ left: details.x + 'px', top: details.y + 'px'}">
+                        T
+                    </div>
                 </div>
-                    <table v-if="MenuItem.length > 0" class="center">
-                        <thead>
-                        <tr class="wrapper">
-                            <th 
-                            v-for="(item_obj,item_index) in MenuItem"v-if="item_obj.stock>0">
-                                <div class="col-item">{{item_obj.name}}</div>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody class="images">
-                                <tr class="wrapper">
-                                    <td 
-                                    v-for="(item_obj,item_index) in MenuItem"
-                                    v-if="item_obj.stock>0">
-                                        <div class="col-item">
-                                            <img :src="item_obj.img" :alt="item_obj.name" :title="item_obj.name" width="100%" height="100%">
-                                        </div>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    <tfoot id="list">
-                        <tr class="wrapper">
-                            <td 
-                            v-for="(item_obj,item_index) in MenuItem"v-if="item_obj.stock>0">
-                                <ul class="col-item">
-                                    <li>{{item_obj.kCal}} kCal </li>
-                                    <li v-if="item_obj.lactose==true">
-                                        Contains <span id="ingr">lactose </span>
-                                    </li>
-                                    <li v-if="item_obj.gluten==true">
-                                        Contains <span id="ingr1">gluten</span>
-                                    </li>
-                                </ul>
-                                <label>
-                                    <input type="checkbox" name="tick" v-model="item_obj.checked"> Select
-                                </label>
-                                 
-                            </td>
-                            <!-- <td>
-                                <ul class="turkey">
-                                    <li>600 kCal </li>
-                                    <li>Contains <span id="ingr">lactose </span> </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul class="cheese">
-                                    <li>1800 kCal </li>
-                                    <li>Contains <span id="ingr">lactose </span> </li>
-                                    <li>Contains <span id="ingr">gluten</span></li>
-                                </ul>
-                            </td> -->
-                        </tr>
-                    </tfoot>
-                </table>
-            </section>
+            </div>
 
-            <section class="info" id="contact">
-                <form id="order-form">
-                <h3>Customer Information</h3>
-                <p>This is where you provide necessary information</p>
-                <h4>Delivery information:</h4>
-                
-                    <p>
-                        <label for="name">Full Name</label><br>
-                        <input type="text" id="name" name="fn" required="required" placeholder="First name" ref="f_name">
-                        <input type="text" id="lastname" name="ln" ref="l_name" placeholder="Last name">
-                    </p>
+            <!-- for="" and id="" is missing for Gender attribute-->
+            <label>Gender</label><br>
+            <input type="radio" checked="checked" name="sex" value="Male"  v-model="userData[4]"> Male<br>
+            <input type="radio" name="sex" value="Female" v-model="userData[4]"> Female<br>
+            <input type="radio" name="sex" value="Non-Binary" v-model="userData[4]"> Non-Binary<br>
+            <input type="radio" name="sex" value="Undisclosed" v-model="userData[4]"> Undisclosed
 
-                    <p>
-                        <label for="email">E-mail</label><br>
-                        <input type="email" id="email" name="em" ref="email" required="required" placeholder="E-mail address">
-                    </p>
 
-                    <p>
-                        <label for="street">Street</label><br>
-                        <input type="text" id="street" name="street" ref="street" placeholder="Street name">
-                    </p>
-                    <p>
-                        <label for="house">House</label><br>
-                        <input type="text" id="house" name="hus" ref="house" placeholder="House Number">
-                    </p>
-                    <p>
-                        <label for="payment">Recipient</label><br>
-                        <select id="payment" name="pay" ref="payment">
-                            <option>Credit Card</option>
-                            <option>Debit Card</option>
-                            <option>Swish</option>
-                            <option>BankId</option>
-                        </select>
-                    </p>
-                    <p>
-                        <!-- for="" and id="" is missing for Gender attribute-->
-                        <label>Gender</label><br>
-                        <input type="radio" checked="checked" name="sex" ref="sex" value="male"> Male<br>
-                        <input type="radio" name="sex" value="female"> Female<br>
-                        <input type="radio" name="sex" value="non-binary"> Non-binary<br>
-                        <input type="radio" name="sex" value="Undisclosed"> Undisclosed
-                    </p>
-                    <!-- <input type="submit" value="Place my order!"> -->
+            </p>
             <div class="button">
-                <button type="submit" value="Place my order!" @click.prevent="PlaceOrder">
-                    <img src="/img/food-order-icon.jpg" 
-                width="35" height="35" align="center"> 
+                <button type="submit" value="Place my order!" @click.prevent="addOrder">
+                    <img src="/img/food-order-icon.jpg"
+                         width="35" height="35" align="center">
                     Place my order!
                 </button>
-                </div>    
-            </form>
-            </section>
-            <section>
-                <div v-if="userData">
-                    User Details:
-                    <pre>{{userData.f_name+ ' '+userData.l_name}}</pre>
-                    <pre>{{userData}}</pre>
-                    
-
-                    Order Details:
-                    <ul v-if="MenuItem.length>0">
-                        <li 
-                        v-for="(item_obj,item_index) in MenuItem" v-if="item_obj.checked==true"
-                        >{{item_obj.name}}</li>
-                    </ul>
-                </div>
-            </section>
             </div>
-        </body>
-
-		<script src="js/vue_script.js"></script>
+        </form>
+    </section>
+    <section>
+        <div id="orders" v-if="userData[0]">
+            <h3>Customer details</h3>
+            <h4>Name: {{userData[0]}} {{userData[1]}}</h4>
+            <h4>Email: {{userData[2]}}</h4>
+            <h4>Gender: {{userData[3]}}</h4>
+            <h4>Payment: {{userData[4]}}</h4>
+            <h4>Chosen burger: {{orderItems}}</h4>
+        </div>
+    </section>
+</div>
+</body>
 </html>
